@@ -24,16 +24,14 @@ export function getRandomStoreName() {
   const adjectives = [
     "clean",
     "cold",
-    "elegant",
     "decentralized",
-    "fancy",
+    "digital",
     "long",
-    "old-fashioned",
     "lazy",
+    "hedging",
     "smart",
     "pure",
     "immutable",
-    "popular",
     "hot",
     "public",
     "stable"
@@ -42,19 +40,26 @@ export function getRandomStoreName() {
   const nouns = [
     "altcoin",
     "blockchain",
+    "coin",
+    "miner",
     "mining",
     "currency",
-    "finance",
-    "ledger",
     "exchange",
-    "key",
-    "coin",
+    "distributed-ledger",
+    "finance",
+    "proof-of-stake",
+    "proof-of-work",
+    "provisioned-ledger",
+    "market-order",
+    "smart-contract",
     "storage",
     "seed",
     "tether",
     "token",
+    "tokenless-ledgeer",
     "NFT",
-    "wallet"
+    "wallet",
+    "wash-trading"
   ];
 
   return `${rando(adjectives)}-${rando(adjectives)}-${rando(nouns)}`;
