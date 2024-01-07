@@ -16,7 +16,7 @@ class StorePicker extends React.Component {
     return (
       <form className="store-selector" onSubmit={this.goToCryptoStore}>
         <h2>Enter A Crypto Store</h2>
-        <input type="test" ref={this.myInput} required placeholder="Store Name" defaultValue={getRandomStoreName()}/>
+        <input type="text" ref={this.myInput} required placeholder="Store Name" defaultValue={getRandomStoreName()}/>
         <button type="submit">Visit Store</button>
       </form>
     );

@@ -4,6 +4,19 @@ import Order from './Order';
 import Inventory from './Inventory';
 
 class App extends React.Component {
+    state = {
+        cryptoCurrencies: {},
+        order: {},
+    }
+
+    addCrypto = crypto => {
+        // Get current cryptoCurrencies state
+        const cryptoCurrencies = { ...this.state.cryptoCurrencies };
+
+        cryptoCurrencies[`crypto${Date.now()}`] = crypto;
+
+        this.setState({ cryptoCurrencies });
+    }
   render() {
     return (
       <div className="crypto-sale">
@@ -11,7 +24,7 @@ class App extends React.Component {
           <Header tagline="Every Coin Must Go!" />
         </div>
         <Order />
-        <Inventory />
+        <Inventory addCrypto={this.addCrypto} />
       </div>
     );
   }
