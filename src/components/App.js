@@ -11,6 +11,19 @@ class App extends React.Component {
         cart: {},
     }
 
+    componentDidMount() {
+        // re-instate local storage
+        const localCart = localStorage.getItem(this.props.match.params.storeId);
+
+        if (localCart) {
+            this.setState({ cart: JSON.parse(localCart) });
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        localStorage.setItem(this.props.match.params.storeId, JSON.stringify(this.state.cart));
+    }
+
     addCrypto = crypto => {
         // Get current cryptoCurrencies state
         const cryptoCurrencies = { ...this.state.cryptoCurrencies };

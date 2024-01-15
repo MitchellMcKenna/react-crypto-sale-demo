@@ -12,7 +12,9 @@ Build an all-in-one crypto broker; add crypto inventory, view available inventor
 - JSX for markup
 - React Hooks: useEffect, useState
 - State Management
+- Use LocalStorage to persist your cart
 - Stylus for css preprocessor
+- 3D Fold button using CSS 3D Transform and animation
 - CSS animated gradient for background
 
 ## Prerequisites

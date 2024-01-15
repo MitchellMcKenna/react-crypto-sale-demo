@@ -5,7 +5,12 @@ class Cart extends React.Component {
     renderCartItem(id) {
         const crypto = this.props.cryptoCurrencies[id]
         const count = this.props.cart[id]
-        const isAvailable = crypto.status === 'available'
+        const isAvailable = crypto && crypto.status === 'available'
+
+        if (!crypto) {
+            return null
+        }
+
         if (!isAvailable) {
             return <li key={id}>Sorry, {crypto ? crypto.name : 'this crypto'} is no longer available!</li>
         }
@@ -17,7 +22,7 @@ class Cart extends React.Component {
         const cryptoCurrencies = this.props.cryptoCurrencies
 
         const total = Object.keys(cart).reduce((prevTotal, id) => {
-            if (cryptoCurrencies && cryptoCurrencies[id].status === 'available') {
+            if (cryptoCurrencies && cryptoCurrencies[id] && cryptoCurrencies[id].status === 'available') {
                 return prevTotal + (cryptoCurrencies[id].price * cart[id])
             }
             return prevTotal

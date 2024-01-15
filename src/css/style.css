@@ -244,6 +244,11 @@ h2 {
 h3 {
   font-size: 3rem;
 }
+body {
+  background: linear-gradient(-45deg, #772d16, #6b1838, #237f9e, #106f59);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
 header.top {
   text-align: center;
 }
@@ -258,9 +263,9 @@ header.top h1 .logo {
   align-items: center;
   background: url("images/bitcoin.svg") center no-repeat;
   background-size: cover;
-  padding: 0 1rem;
   height: 11rem;
   width: 11rem;
+  margin: 0px -1px;
 }
 header.top h3 {
   margin: 1rem;
@@ -305,6 +310,7 @@ header.top h3:after {
   flex: 1 4 auto;
   padding: 2rem;
   border: 1rem double #1a1a1a;
+  border-radius: 2rem;
   position: relative;
   background: #fff;
   transition: all 0.3s;
@@ -354,7 +360,7 @@ ul {
   margin: 0;
   padding: 0;
 }
-ul.order li {
+ul.cart li {
   border-bottom: 1px solid #000;
   padding: 2rem 0;
   display: flex;
@@ -362,28 +368,28 @@ ul.order li {
   justify-content: space-between;
   align-items: center;
 }
-ul.order li:hover button {
+ul.cart li:hover button {
   display: inline;
 }
-ul.order li button {
+ul.cart li button {
   border: 0;
   display: none;
   line-height: 1;
   padding: 0;
 }
-ul.order li.unavailable {
+ul.cart li.unavailable {
   text-decoration: line-through;
   background: #f8d0d2;
 }
-ul.order li .price {
+ul.cart li .price {
   font-size: 1.2rem;
 }
-ul.order li span.count {
+ul.cart li span.count {
   position: relative;
   overflow: hidden;
   float: left;
 }
-ul.order li span.count span {
+ul.cart li span.count span {
   display: inline-block;
 }
 .total {
@@ -397,6 +403,142 @@ ul.order li span.count span {
 }
 .order-title {
   text-align: center;
+}
+.crypto-edit {
+  margin-bottom: 20px;
+  border: 2px solid #000;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+}
+.crypto-edit input,
+.crypto-edit textarea,
+.crypto-edit select {
+  width: 33.33%;
+  padding: 10px;
+  line-height: 1;
+  font-size: 1.2rem;
+  border: 0;
+  border-bottom: 1px solid #000;
+  border-right: 1px solid #000;
+  -webkit-appearance: none;
+          appearance: none;
+  border-radius: 0;
+  background: #fff;
+}
+.crypto-edit input:focus,
+.crypto-edit textarea:focus,
+.crypto-edit select:focus {
+  outline: 0;
+  background: #fef2de;
+}
+.crypto-edit textarea {
+  width: 100%;
+}
+.crypto-edit input:last-of-type {
+  width: 100%;
+}
+.crypto-edit button {
+  width: 100%;
+  border: 0;
+}
+.list-of-crypto {
+  border-top: 2px solid #000;
+  border-bottom: 1px solid #000;
+  padding-top: 5px;
+  margin-top: 2rem;
+  transform: translateZ(0);
+}
+.menu-crypto {
+  border-bottom: 2px solid #000;
+  border-top: 1px solid #000;
+  padding-bottom: 2rem;
+  padding-top: 2rem;
+  margin-bottom: 5px;
+  clear: both;
+  overflow: hidden;
+}
+.menu-crypto p {
+  margin: 0;
+  font-size: 1.8rem;
+}
+.menu-crypto .crypto-name {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.menu-crypto .price {
+  font-size: 1.4rem;
+  justify-content: flex-end;
+}
+.menu-crypto img {
+  float: left;
+  width: 72px;
+  height: 72px;
+  margin-right: 1rem;
+}
+button,
+input[type=submit] {
+  text-transform: uppercase;
+  background: none;
+  border: 1px solid #000;
+  font-weight: 600;
+  font-size: 1.5rem;
+  font-family: 'Open Sans', sans-serif;
+  transition: all 0.2s;
+  position: relative;
+  z-index: 2;
+}
+button[disabled],
+input[type=submit][disabled] {
+  color: #d12028;
+  background: #fff;
+  border-color: #d12028;
+  transform: rotate(-10deg) scale(2) translateX(50%) translateY(-50%);
+}
+button[disabled]:hover,
+input[type=submit][disabled]:hover {
+  color: #d12028;
+  cursor: not-allowed;
+}
+button[disabled]:after,
+input[type=submit][disabled]:after {
+  display: none;
+}
+button:after,
+input[type=submit]:after {
+  content: '';
+  z-index: -1;
+  display: block;
+  background: #000;
+  position: absolute;
+  width: 100%;
+  height: 0;
+  left: 0;
+  top: 0;
+  transition: all 0.2s;
+}
+button:hover,
+input[type=submit]:hover,
+button:focus,
+input[type=submit]:focus {
+  color: #fff;
+  outline: 0;
+}
+button:hover:after,
+input[type=submit]:hover:after,
+button:focus:after,
+input[type=submit]:focus:after {
+  height: 100%;
+}
+button.warning:after,
+input[type=submit].warning:after {
+  background: #d12028;
+}
+button.success:after,
+input[type=submit].success:after {
+  background: #2dc22d;
 }
 .store-selector {
   background: #fff;
@@ -413,4 +555,15 @@ ul.order li span.count span {
 .store-selector button[type="text"] {
   text-align: center;
   font-size: 3rem;
+}
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
