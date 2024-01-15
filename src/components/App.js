@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './Header';
-import Order from './Order';
+import Cart from './Cart';
 import Inventory from './Inventory';
 import Crypto from './Crypto';
 import sampleCrypto from '../sample-crypto'
@@ -8,7 +8,7 @@ import sampleCrypto from '../sample-crypto'
 class App extends React.Component {
     state = {
         cryptoCurrencies: {},
-        order: {},
+        cart: {},
     }
 
     addCrypto = crypto => {
@@ -24,16 +24,28 @@ class App extends React.Component {
         this.setState({ cryptoCurrencies: sampleCrypto });
     };
 
+    addToCart = id => {
+        const cart = {...this.state.cart };
+
+        if (cart[id]) {
+            cart[id] += 1;
+        } else {
+            cart[id] = 1;
+        }
+
+        this.setState({ cart });
+    }
+
   render() {
     return (
       <div className="crypto-sale">
         <div className="menu">
           <Header tagline="Every Coin Must Go!" />
             <ul className="crypto-list">
-                {Object.keys(this.state.cryptoCurrencies).map(id => (<Crypto key={id} details={this.state.cryptoCurrencies[id]} />))}
+                {Object.keys(this.state.cryptoCurrencies).map(id => (<Crypto key={id} id={id} details={this.state.cryptoCurrencies[id]} addToCart={this.addToCart} />))}
             </ul>
         </div>
-        <Order />
+        <Cart cryptoCurrencies={this.state.cryptoCurrencies} cart={this.state.cart} />
         <Inventory addCrypto={this.addCrypto} loadSampleCrypto={this.loadSampleCrypto} />
       </div>
     );
