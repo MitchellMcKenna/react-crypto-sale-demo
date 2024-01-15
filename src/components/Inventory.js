@@ -7,6 +7,7 @@ class Inventory extends React.Component {
       <div className="intentory">
         <h2>Inventory</h2>
         <AddCryptoForm addCrypto={this.props.addCrypto} />
+          <button onClick={this.props.loadSampleCrypto}>Load Sample Crypto</button>
       </div>
     );
   }
