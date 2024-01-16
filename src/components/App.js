@@ -33,6 +33,12 @@ class App extends React.Component {
         this.setState({ cryptoCurrencies });
     };
 
+    updateCrypto = (id, crypto) => {
+        const cryptoCurrencies = { ...this.state.cryptoCurrencies };
+        cryptoCurrencies[id] = crypto;
+        this.setState({ cryptoCurrencies });
+    }
+
     loadSampleCrypto = () => {
         this.setState({ cryptoCurrencies: sampleCrypto });
     };
@@ -59,7 +65,7 @@ class App extends React.Component {
             </ul>
         </div>
         <Cart cryptoCurrencies={this.state.cryptoCurrencies} cart={this.state.cart} />
-        <Inventory addCrypto={this.addCrypto} loadSampleCrypto={this.loadSampleCrypto} />
+        <Inventory addCrypto={this.addCrypto} updateCrypto={this.updateCrypto} loadSampleCrypto={this.loadSampleCrypto} cryptoCurrencies={this.state.cryptoCurrencies} />
       </div>
     );
   }
