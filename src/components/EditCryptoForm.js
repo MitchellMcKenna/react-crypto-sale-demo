@@ -20,6 +20,7 @@ class EditCryptoForm extends React.Component {
                 </select>
                 <textarea name="desc" onChange={this.handleChange} value={this.props.crypto.desc} placeholder="Description" />
                 <input name="image" type="text"  onChange={this.handleChange} value={this.props.crypto.image} placeholder="Image" />
+                <button onClick={() => this.props.deleteCrypto(this.props.id)}>Delete Crypto</button>
             </div>
         )
     }

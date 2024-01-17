@@ -7,7 +7,7 @@ class Inventory extends React.Component {
         return (
             <div className='intentory'>
                 <h2>Inventory</h2>
-                {Object.keys(this.props.cryptoCurrencies).map(id => <EditCryptoForm key={id} id={id} crypto={this.props.cryptoCurrencies[id]} updateCrypto={this.props.updateCrypto} />)}
+                {Object.keys(this.props.cryptoCurrencies).map(id => (<EditCryptoForm key={id} id={id} crypto={this.props.cryptoCurrencies[id]} updateCrypto={this.props.updateCrypto} deleteCrypto={this.props.deleteCrypto} />))}
                 <AddCryptoForm addCrypto={this.props.addCrypto} />
                 <button onClick={this.props.loadSampleCrypto}>Load Sample Crypto</button>
             </div>

@@ -14,7 +14,13 @@ class Cart extends React.Component {
         if (!isAvailable) {
             return <li key={id}>Sorry, {crypto ? crypto.name : 'this crypto'} is no longer available!</li>
         }
-        return <li key={id}>{count} x {crypto.name} {formatPrice(crypto.price)}</li>
+
+        return (
+            <li key={id}>
+                {count} x {crypto.name} {formatPrice(crypto.price)}
+                <button onClick={() => this.props.removeFromCart(id)}>&times;</button>
+            </li>
+        );
     }
 
     render() {

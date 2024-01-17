@@ -39,6 +39,12 @@ class App extends React.Component {
         this.setState({ cryptoCurrencies });
     }
 
+    deleteCrypto = id => {
+        const cryptoCurrencies = { ...this.state.cryptoCurrencies };
+        delete cryptoCurrencies[id];
+        this.setState({ cryptoCurrencies });
+    }
+
     loadSampleCrypto = () => {
         this.setState({ cryptoCurrencies: sampleCrypto });
     };
@@ -55,6 +61,12 @@ class App extends React.Component {
         this.setState({ cart });
     }
 
+    removeFromCart = id => {
+        const cart = {...this.state.cart };
+        delete cart[id];
+        this.setState({ cart });
+    }
+
   render() {
     return (
       <div className="crypto-sale">
@@ -64,8 +76,8 @@ class App extends React.Component {
                 {Object.keys(this.state.cryptoCurrencies).map(id => (<Crypto key={id} id={id} details={this.state.cryptoCurrencies[id]} addToCart={this.addToCart} />))}
             </ul>
         </div>
-        <Cart cryptoCurrencies={this.state.cryptoCurrencies} cart={this.state.cart} />
-        <Inventory addCrypto={this.addCrypto} updateCrypto={this.updateCrypto} loadSampleCrypto={this.loadSampleCrypto} cryptoCurrencies={this.state.cryptoCurrencies} />
+        <Cart cryptoCurrencies={this.state.cryptoCurrencies} cart={this.state.cart} removeFromCart={this.removeFromCart} />
+        <Inventory addCrypto={this.addCrypto} updateCrypto={this.updateCrypto}  deleteCrypto={this.deleteCrypto} loadSampleCrypto={this.loadSampleCrypto} cryptoCurrencies={this.state.cryptoCurrencies} />
       </div>
     );
   }
