@@ -1,86 +1,84 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react'
 import Header from './Header';
 import Cart from './Cart';
 import Inventory from './Inventory';
 import Crypto from './Crypto';
 import sampleCrypto from '../sample-crypto'
 
-class App extends React.Component {
-    state = {
-        cryptoCurrencies: {},
-        cart: {},
-    }
+function App (props) {
+    const [cart, setCart] = useState({});
+    const [cryptoCurrencies, setCryptoCurrencies] = useState({});
 
-    componentDidMount() {
-        // re-instate local storage
-        const localCart = localStorage.getItem(this.props.match.params.storeId);
+    const mounted = useRef();
+    useEffect(() => {
+        if (!mounted.current) {
+            // re-instate local storage
+            const localCart = localStorage.getItem(props.match.params.storeId);
 
-        if (localCart) {
-            this.setState({ cart: JSON.parse(localCart) });
-        }
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        localStorage.setItem(this.props.match.params.storeId, JSON.stringify(this.state.cart));
-    }
-
-    addCrypto = crypto => {
-        // Get current cryptoCurrencies state
-        const cryptoCurrencies = { ...this.state.cryptoCurrencies };
-
-        cryptoCurrencies[`crypto${Date.now()}`] = crypto;
-
-        this.setState({ cryptoCurrencies });
-    };
-
-    updateCrypto = (id, crypto) => {
-        const cryptoCurrencies = { ...this.state.cryptoCurrencies };
-        cryptoCurrencies[id] = crypto;
-        this.setState({ cryptoCurrencies });
-    }
-
-    deleteCrypto = id => {
-        const cryptoCurrencies = { ...this.state.cryptoCurrencies };
-        delete cryptoCurrencies[id];
-        this.setState({ cryptoCurrencies });
-    }
-
-    loadSampleCrypto = () => {
-        this.setState({ cryptoCurrencies: sampleCrypto });
-    };
-
-    addToCart = id => {
-        const cart = {...this.state.cart };
-
-        if (cart[id]) {
-            cart[id] += 1;
+            if (localCart) {
+                setCart(JSON.parse(localCart));
+            }
+            mounted.current = true;
         } else {
-            cart[id] = 1;
+            localStorage.setItem(props.match.params.storeId, JSON.stringify(cart));
+        }
+    }, [props.match.params.storeId, cart]);
+
+    const addCrypto = crypto => {
+        // Get current cryptoCurrencies state
+        const newCryptoCurrencies = { ...cryptoCurrencies };
+
+        newCryptoCurrencies[`crypto${Date.now()}`] = crypto;
+
+        setCryptoCurrencies(newCryptoCurrencies);
+    };
+
+    const updateCrypto = (id, crypto) => {
+        const newCryptoCurrencies = { ...cryptoCurrencies };
+        newCryptoCurrencies[id] = crypto;
+        setCryptoCurrencies(newCryptoCurrencies);
+    }
+
+    const deleteCrypto = id => {
+        const newCryptoCurrencies = { ...cryptoCurrencies };
+        delete newCryptoCurrencies[id];
+        setCryptoCurrencies(newCryptoCurrencies);
+    }
+
+    const loadSampleCrypto = () => {
+        setCryptoCurrencies({ ...sampleCrypto });
+    };
+
+    const addToCart = id => {
+        const newCart = { ...cart };
+
+        if (newCart[id]) {
+            newCart[id] += 1;
+        } else {
+            newCart[id] = 1;
         }
 
-        this.setState({ cart });
+        setCart(newCart);
     }
 
-    removeFromCart = id => {
-        const cart = {...this.state.cart };
-        delete cart[id];
-        this.setState({ cart });
+    const removeFromCart = id => {
+        const newCart = {...cart};
+        delete newCart[id];
+        setCart(newCart);
     }
 
-  render() {
     return (
       <div className="crypto-sale">
         <div className="menu">
           <Header tagline="Every Coin Must Go!" />
             <ul className="crypto-list">
-                {Object.keys(this.state.cryptoCurrencies).map(id => (<Crypto key={id} id={id} details={this.state.cryptoCurrencies[id]} addToCart={this.addToCart} />))}
+                {Object.keys(cryptoCurrencies).map(id => (<Crypto key={id} id={id} details={cryptoCurrencies[id]} addToCart={addToCart} />))}
             </ul>
         </div>
-        <Cart cryptoCurrencies={this.state.cryptoCurrencies} cart={this.state.cart} removeFromCart={this.removeFromCart} />
-        <Inventory addCrypto={this.addCrypto} updateCrypto={this.updateCrypto}  deleteCrypto={this.deleteCrypto} loadSampleCrypto={this.loadSampleCrypto} cryptoCurrencies={this.state.cryptoCurrencies} />
+        <Cart cryptoCurrencies={cryptoCurrencies} cart={cart} removeFromCart={removeFromCart} />
+        <Inventory addCrypto={addCrypto} updateCrypto={updateCrypto}  deleteCrypto={deleteCrypto} loadSampleCrypto={loadSampleCrypto} cryptoCurrencies={cryptoCurrencies} />
       </div>
     );
-  }
 }
 
 export default App;
