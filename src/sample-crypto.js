@@ -1,15 +1,15 @@
 // This is just some sample data so you don't have to think of your own!
 const crypto = {
-  cryto1: {
+  crypto1: {
     name: "Bitcoin (BTC)",
     image: "https://cryptologos.cc/logos/bitcoin-btc-logo.svg",
     desc:
-      "Everyone’s favorite cryto. The OG crypto currency.",
+      "Everyone’s favorite crypto. The OG crypto currency.",
     price: 4200000,
     status: "available"
   },
 
-  cryto2: {
+  crypto2: {
     name: "Ethereum (ETH)",
     image: "https://cryptologos.cc/logos/ethereum-eth-logo.svg",
     desc:
@@ -18,7 +18,7 @@ const crypto = {
     status: "available"
   },
 
-  cryto3: {
+  crypto3: {
     name: "Dogecoin (DOGE)",
     image: "https://cryptologos.cc/logos/dogecoin-doge-logo.svg",
     desc:
@@ -27,7 +27,7 @@ const crypto = {
     status: "unavailable"
   },
 
-  cryto4: {
+  crypto4: {
     name: "Solana (SOL)",
     image: "https://cryptologos.cc/logos/solana-sol-logo.svg",
     desc:
@@ -36,7 +36,7 @@ const crypto = {
     status: "available"
   },
 
-  cryto5: {
+  crypto5: {
     name: "Tether (USDT)",
     image: "https://cryptologos.cc/logos/tether-usdt-logo.svg",
     desc:
@@ -45,7 +45,7 @@ const crypto = {
     status: "available"
   },
 
-  cryto6: {
+  crypto6: {
     name: "Binance USD (BUSD)",
     image: "https://cryptologos.cc/logos/binance-usd-busd-logo.svg",
     desc:
@@ -54,7 +54,7 @@ const crypto = {
     status: "available"
   },
 
-  cryto7: {
+  crypto7: {
     name: "XRP (XRP)",
     image: "https://cryptologos.cc/logos/xrp-xrp-logo.svg",
     desc: "Formerly known as Ripple. Can be useful in cross-border transactions.",
@@ -62,7 +62,7 @@ const crypto = {
     status: "available"
   },
 
-  cryto8: {
+  crypto8: {
     name: "Polkadot (DOT)",
     image: "https://cryptologos.cc/logos/polkadot-new-dot-logo.svg",
     desc:
@@ -71,7 +71,7 @@ const crypto = {
     status: "available"
   },
 
-  cryto9: {
+  crypto9: {
     name: "Tron (TRX)",
     image: "https://cryptologos.cc/logos/tron-trx-logo.svg",
     desc:
