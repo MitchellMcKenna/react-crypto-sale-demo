@@ -17,6 +17,7 @@ Build an all-in-one crypto broker; add crypto inventory, view available inventor
 - Stylus for css preprocessor
 - 3D Fold button using CSS 3D Transform and animation
 - CSS animated gradient for background
+- CSS animations for adding to cart
 
 ## Prerequisites
 - [node >=14](https://nodejs.org/en/download)

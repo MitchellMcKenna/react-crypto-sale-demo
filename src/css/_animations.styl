@@ -1,0 +1,39 @@
+/*
+  Possible Animations:
+  enter
+  exit
+  appear Must set transitionAppear={true} on animation component
+*/
+
+.cart-enter
+  transform translateX(-120%)
+  transition all 0.5s
+  max-height 0
+  padding 0 !important
+  &.cart-enter-active
+    max-height 60px
+    transform translateX(0)
+    padding 2rem 0 !important
+
+.cart-exit
+  transition all 0.5s
+  transform translateX(0)
+  &.cart-exit-active
+    transform: translateX(120%)
+    max-height: 0
+    padding: 0
+
+.count-enter
+  transition all .25s
+  transform translateY(100%) // start not shown
+  &.count-enter-active
+    transform translateY(0) // put it in the right place
+
+.count-exit
+  transition all .25s
+  position absolute
+  left 0
+  bottom 0
+  transform translateY(0) //start from where it is
+  &.count-exit-active
+    transform translateY(-100%) //move it off screen

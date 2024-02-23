@@ -1,42 +1,39 @@
-.order-enter {
+.cart-enter {
   transform: translateX(-120%);
-  transition: 0.5s;
+  transition: all 0.5s;
   max-height: 0;
   padding: 0 !important;
 }
-.order-enter.order-enter-active {
+.cart-enter.cart-enter-active {
   max-height: 60px;
   transform: translateX(0);
   padding: 2rem 0 !important;
 }
-.order-exit {
-  transition: 0.5s;
+.cart-exit {
+  transition: all 0.5s;
   transform: translateX(0);
 }
-.order-exit.order-exit-active {
+.cart-exit.cart-exit-active {
   transform: translateX(120%);
+  max-height: 0;
   padding: 0;
 }
 .count-enter {
-  background: #f00;
-  transition: 0.5s;
+  transition: all 0.25s;
   transform: translateY(100%);
 }
 .count-enter.count-enter-active {
-  background: #ff0;
   transform: translateY(0);
 }
 .count-exit {
-  background: #000;
-  transform: translateY(0);
-  transition: 0.5s;
+  transition: all 0.25s;
   position: absolute;
   left: 0;
   bottom: 0;
+  transform: translateY(0);
 }
 .count-exit.count-exit-active {
-  background: #008000;
-  transform: translateY(-100%) scale(3);
+  transform: translateY(-100%);
 }
 @font-face {
   font-family: "haymakerregular";

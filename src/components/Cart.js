@@ -1,5 +1,6 @@
 import React from 'react'
 import { formatPrice } from '../helpers'
+import { TransitionGroup, CSSTransition } from'react-transition-group'
 
 function Cart(props){
     const renderCartItem = (id) => {
@@ -12,14 +13,27 @@ function Cart(props){
         }
 
         if (!isAvailable) {
-            return <li key={id}>Sorry, {crypto ? crypto.name : 'this crypto'} is no longer available!</li>
+            return (
+                <CSSTransition classNames="cart-fade" timeout={{ enter: 250, exit: 250 }} key={id}>
+                    <li key={id}>Sorry, {crypto ? crypto.name : 'this crypto'} is no longer available!</li>
+                </CSSTransition>
+            )
         }
 
         return (
-            <li key={id}>
-                {count} x {crypto.name} {formatPrice(crypto.price)}
-                <button onClick={() => props.removeFromCart(id)}>&times;</button>
-            </li>
+            <CSSTransition classNames="cart" timeout={{ enter: 250, exit: 250 }} key={id}>
+                <li key={id}>
+                    <span>
+                        <TransitionGroup component="span" className="count">
+                            <CSSTransition classNames="count" key={count} timeout={{ enter: 250, exit: 250 }}>
+                                <span className='count'>{count}</span>
+                            </CSSTransition>
+                        </TransitionGroup>
+                        x {crypto.name} {formatPrice(crypto.price)}
+                        <button onClick={() => props.removeFromCart(id)}>&times;</button>
+                    </span>
+                </li>
+            </CSSTransition>
         );
     }
 
@@ -36,9 +50,9 @@ function Cart(props){
     return (
         <div className='cart-wrap'>
             <h2>Cart</h2>
-            <ul className='cart'>
+            <TransitionGroup component="ul" className='cart'>
                 {Object.keys(cart).map(id => renderCartItem(id))}
-            </ul>
+            </TransitionGroup>
             <h3>Total: <strong>{formatPrice(total)}</strong></h3>
         </div>
     )
