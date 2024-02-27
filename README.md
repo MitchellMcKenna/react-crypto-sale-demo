@@ -1,5 +1,7 @@
 # React Crypto Sales Demo
 
+![Screenshot](./screenshot.gif)
+
 Coding exercise using React: 
 
 Build an all-in-one crypto broker; add crypto inventory, view available inventory and pricing, and add to cart and create orders which updates available inventory, all live-updating using React.
